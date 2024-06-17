@@ -1,0 +1,18 @@
+FROM us.gcr.io/cmpc-common-tools-test/cmpc-alpine-node:0.0.1
+LABEL version="1.0.0" description="best4-dash-analitico"
+
+WORKDIR /app
+
+RUN chown -R node:node /app
+RUN npm install --ignore-scripts -g serve
+RUN apk add curl
+
+USER node
+
+COPY docker .
+COPY build build
+
+EXPOSE 3000
+
+ENTRYPOINT ["/bin/bash", "/app/entrypoint.sh"]
+
