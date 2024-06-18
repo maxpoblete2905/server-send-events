@@ -12,7 +12,7 @@ import {
   getTransfers,
   startListeningForNewTransfer,
 } from "../redux/transfers/transfersApi";
-import { TransferData } from "../interfaces/TransferData";
+import { TransferData } from "@interfaces/TransferData";
 
 export function TableTransfers() {
   const [showAlert, setShowAlert] = useState(false);

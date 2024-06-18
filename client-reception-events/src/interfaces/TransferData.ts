@@ -1,8 +1,8 @@
 export interface TransferData {
-  id: number;
+  id?: number;
   sender: string;
   receiver: string;
   amount: string;
-  transfer_date: string;
+  transfer_date?: string;
   commune: string;
 }

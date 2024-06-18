@@ -1,7 +1,7 @@
-import { TableTransfers } from "./components/TableTransfer";
+import MainRoutes from "./routers/routers";
 
 function App() {
-  return <TableTransfers />;
+  return <MainRoutes />;
 }
 
 export default App;

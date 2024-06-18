@@ -2,7 +2,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { getTransfers } from "./transfersApi";
 import { initialStateTransfers } from "./transfersInterface";
-import { TransferData } from "../../interfaces/TransferData";
+import { TransferData } from "@interfaces/TransferData";
 
 export const transfersSlice = createSlice({
   name: "transfers",
