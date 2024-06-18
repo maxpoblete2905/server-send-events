@@ -1,27 +1,26 @@
-import { Body, Controller, Get, Post, Sse } from '@nestjs/common';
+import { Body, Controller, Get, Post, Sse, MessageEvent } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { TransfersService } from './transfers.service';
-import { MessageEvent } from './interface';
-import { Transfer } from './Transfer.model';
+import { Transfer } from '../models/Transfer';
 
 @Controller('api')
 export class TransfersController {
-  constructor(private readonly appService: TransfersService) {}
+  constructor(private readonly transfersService: TransfersService) {}
 
   @Sse('listen')
   sendEvent(): Observable<MessageEvent> {
-    return this.appService.listenToChangesByColAgregate();
+    return this.transfersService.listenToChangesByColAgregate();
   }
 
   @Get('transfers')
   async getAllTransfers(): Promise<Transfer[]> {
-    return await this.appService.getAllTransfers();
+    return await this.transfersService.getAllTransfers();
   }
 
   @Post('transfer')
   async addTransfer(@Body() transferData: Transfer): Promise<any> {
     try {
-      await this.appService.addTransfer(transferData);
+      await this.transfersService.addTransfer(transferData);
       return { message: 'Transferencia agregada correctamente' };
     } catch (error) {
       console.error('Error al agregar transferencia:', error);
