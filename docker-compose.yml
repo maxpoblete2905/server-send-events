@@ -6,10 +6,10 @@ services:
     restart: always
     environment:
       POSTGRES_DB: transfers
-      POSTGRES_USER: user
+      POSTGRES_USER: admin
       POSTGRES_PASSWORD: password
     ports:
-      - "5432:5432"
+      - '5432:5432'
     volumes:
       - ./db-data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -23,9 +23,38 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@example.com
       PGADMIN_DEFAULT_PASSWORD: admin
     ports:
-      - "8080:80"
+      - '8080:80'
     depends_on:
       - db
+    networks:
+      - my-network
+
+  app:
+    image: maxi1234/server-sent-events
+    restart: always
+    environment:
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DATABASE_USER: user
+      DATABASE_PASSWORD: password
+      DATABASE_NAME: transfers
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    networks:
+      - my-network
+
+  react-app:
+    image: maxi1234/client-reception-events
+    restart: always
+    environment:
+      VITE_BACKEND_URL: http://localhost:3000
+      VITE_API_KEY: 1.2354234523456325e+37
+    ports:
+      - '5173:5173'
+    depends_on:
+      - app
     networks:
       - my-network
 

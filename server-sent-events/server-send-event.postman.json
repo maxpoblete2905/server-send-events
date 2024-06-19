@@ -1,0 +1,34 @@
+{
+  "info": {
+    "_postman_id": "0310c971-2267-41c6-8c13-828495cc8695",
+    "name": "server-send-event",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "13582340"
+  },
+  "item": [
+    {
+      "name": "http://localhost:3000/api/transfer",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"sender\": \"John Doe\",\r\n  \"receiver\": \"Jane Smith\",\r\n  \"amount\": 100.50,\r\n  \"commune\": \"Commune A\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/transfer",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "transfer"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
